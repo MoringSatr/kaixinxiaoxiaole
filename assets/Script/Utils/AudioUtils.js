@@ -28,49 +28,49 @@ cc.Class({
         //     }
         // },
         swap: {
-            url: cc.AudioClip,
+            url: cc.Texture2D,
             default: null
         },
         click: {
-            url: cc.AudioClip,
+            url: cc.Texture2D,
             default: null
         },
-        eliminate:{
-            url: [cc.AudioClip],
+        eliminate: {
+            url: [cc.Texture2D],
             default: [],
         },
-        continuousMatch:{
-            url: [cc.AudioClip],
+        continuousMatch: {
+            url: [cc.Texture2D],
             default: []
         }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        
-    },
-
-    start () {
+    onLoad() {
 
     },
-    playClick: function(){
+
+    start() {
+
+    },
+    playClick: function () {
         cc.audioEngine.play(this.click, false, 1);
     },
-    playSwap: function(){
+    playSwap: function () {
         cc.audioEngine.play(this.swap, false, 1);
     },
-    playEliminate: function(step){
+    playEliminate: function (step) {
         step = Math.min(this.eliminate.length - 1, step);
         cc.audioEngine.play(this.eliminate[step], false, 1);
     },
-    playContinuousMatch: function(step){
+    playContinuousMatch: function (step) {
         console.log("step = ", step);
         step = Math.min(step, 11);
-        if(step < 2){
-            return 
+        if (step < 2) {
+            return
         }
-        cc.audioEngine.play(this.continuousMatch[Math.floor(step/2) - 1], false, 1);
+        cc.audioEngine.play(this.continuousMatch[Math.floor(step / 2) - 1], false, 1);
     }
 
     // update (dt) {},

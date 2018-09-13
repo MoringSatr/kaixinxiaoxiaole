@@ -1,5 +1,6 @@
-import { CELL_TYPE, ANITIME, CELL_STATUS, GRID_HEIGHT } from "./ConstValue";
-export default function CellModel(){
+import {CELL_TYPE, ANITIME, CELL_STATUS, GRID_HEIGHT} from "./ConstValue";
+
+export default function CellModel() {
     this.type = null;
     this.status = CELL_STATUS.COMMON;
     this.x = 1;
@@ -11,33 +12,33 @@ export default function CellModel(){
     this.objecCount = Math.floor(Math.random() * 1000);
 }
 
-CellModel.prototype.init= function(type){
+CellModel.prototype.init = function (type) {
     this.type = type;
 }
 
-CellModel.prototype.isEmpty = function(){
-    return this.type == CELL_TYPE.EMPTY; 
+CellModel.prototype.isEmpty = function () {
+    return this.type == CELL_TYPE.EMPTY;
 }
 
-CellModel.prototype.setEmpty = function(){
+CellModel.prototype.setEmpty = function () {
     this.type = CELL_TYPE.EMPTY;
 }
-CellModel.prototype.setXY = function(x,y){
+CellModel.prototype.setXY = function (x, y) {
     this.x = x;
     this.y = y;
 }
 
-CellModel.prototype.setStartXY = function(x,y){
+CellModel.prototype.setStartXY = function (x, y) {
     this.startX = x;
     this.startY = y;
 }
 
-CellModel.prototype.setStatus = function(status){
+CellModel.prototype.setStatus = function (status) {
     this.status = status;
 }
 
-CellModel.prototype.moveToAndBack = function(pos){
-    var srcPos = cc.p(this.x,this.y);
+CellModel.prototype.moveToAndBack = function (pos) {
+    var srcPos = cc.v2(this.x, this.y);
     this.cmd.push({
         action: "moveTo",
         keepTime: ANITIME.TOUCH_MOVE,
@@ -52,8 +53,8 @@ CellModel.prototype.moveToAndBack = function(pos){
     });
 }
 
-CellModel.prototype.moveTo = function(pos, playTime){
-    var srcPos = cc.p(this.x,this.y);
+CellModel.prototype.moveTo = function (pos, playTime) {
+    var srcPos = cc.v2(this.x, this.y);
     this.cmd.push({
         action: "moveTo",
         keepTime: ANITIME.TOUCH_MOVE,
@@ -64,7 +65,7 @@ CellModel.prototype.moveTo = function(pos, playTime){
     this.y = pos.y;
 }
 
-CellModel.prototype.toDie = function(playTime){
+CellModel.prototype.toDie = function (playTime) {
     this.cmd.push({
         action: "toDie",
         playTime: playTime,
@@ -73,7 +74,7 @@ CellModel.prototype.toDie = function(playTime){
     this.isDeath = true;
 }
 
-CellModel.prototype.toShake = function(playTime){
+CellModel.prototype.toShake = function (playTime) {
     this.cmd.push({
         action: "toShake",
         playTime: playTime,
@@ -81,7 +82,7 @@ CellModel.prototype.toShake = function(playTime){
     });
 }
 
-CellModel.prototype.setVisible = function(playTime, isVisible){
+CellModel.prototype.setVisible = function (playTime, isVisible) {
     this.cmd.push({
         action: "setVisible",
         playTime: playTime,
@@ -90,10 +91,10 @@ CellModel.prototype.setVisible = function(playTime, isVisible){
     });
 }
 
-CellModel.prototype.moveToAndDie = function(pos){
+CellModel.prototype.moveToAndDie = function (pos) {
 
 }
 
-CellModel.prototype.isBird = function(){
+CellModel.prototype.isBird = function () {
     return this.type == CELL_TYPE.G;
 }
