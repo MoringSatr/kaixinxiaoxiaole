@@ -44,6 +44,21 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        wx.login({
+            success: (r) => {
+                cc.log(r);
+                wx.getUserInfo({
+                    openIdList: ['selfOpenId', 'ownAP0b9qt6AzvYOSWOX8VX8KMq0', 'ownAP0QJHIN2w3X60EUsj2Vah5Ig', 'ownAP0f8ANWUCcloXN1oZPfxtz0g'],
+                    lang: 'zh_CN',
+                    success: (res) => {
+                        cc.log('success', res.data);
+                    },
+                    fail: (res) => {
+                        reject(res)
+                    }
+                })
+            }
+        });
         this.gameSceneBGMAudioId = cc.audioEngine.play(this.worldSceneBGM, true, 1);
     },
 
